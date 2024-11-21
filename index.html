@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ברוכים הבאים ליוניסטרים</title>
+    <style>
+        body {
+            font-family: Assistant, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.postimg.cc/vBqFRgD3/img-6.webp');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px 20px 0 0;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.95));
+        }
+
+        .nav {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .week-section {
+            margin: 20px;
+            padding: 20px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .week-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .week-title {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .category-title {
+            color: #0056b3;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .task-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .task-list li:hover {
+            background: rgba(0,123,255,0.05);
+            padding-right: 20px;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .schedule-btn {
+            background: linear-gradient(45deg, #0078d4, #00a4ef);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-right: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .task-list li:hover .schedule-btn {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .schedule-btn:hover {
+            background: linear-gradient(45deg, #106ebe, #0091d4);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .schedule-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .edit-button {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .export-btn {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+        }
+
+        .edit-mode-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        #export-panel {
+            z-index: 1001;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(45deg, #ff4081, #ff6e40);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .task-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .center-file-section {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .center-file-link {
+            display: block;
+            padding: 20px;
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .center-file-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.2);
+            background: linear-gradient(45deg, #3367d6, #2d9144);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .link-text {
+            flex: 1;
+        }
+
+        .link-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .link-description {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+            cursor: pointer;
+            accent-color: #007bff;
+            transition: all 0.3s ease;
+        }
+
+        .task-completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+            background: rgba(40, 167, 69, 0.1) !important;
+        }
+
+        .task-content.completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .edit-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .links-section {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .links-category {
+            margin: 20px 0;
+        }
+
+        .links-category-title {
+            color: #0056b3;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .link-button {
+            display: block;
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(45deg, #e9ecef, #dee2e6);
+        }
+
+        .link-button .link-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+
+        .link-button .link-description {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap">
+</head>
+<body>
+    <div class="container">
+        <div class="hero-image"></div>
+        <div class="content-wrapper">
+            <div class="header">
+                <h1>ברוכים הבאים ליוניסטרים</h1>
+                <p>מדריך חפיפה למנהלי מרכזים חדשים</p>
+            </div>
+
+            <div class="nav">
+                <a href="index.html">דף ראשי</a>
+                <a href="dictionary.html">מילון מושגים</a>
+                <a href="https://www.canva.com/design/DAGMOY97uT4/j_HGbOSYYpHanaXlO01g4Q/edit" target="_blank">גאנט שנתי</a>
+            </div>
+
+            <div class="center-file-section">
+                <h2 class="week-title">תיק מרכז קרית מלאכי</h2>
+                <a href="https://docs.google.com/spreadsheets/d/1N2i3erI_i8odTnl7f4Z2r0RYaYMITpCD363S8VRzVtw/edit?usp=sharing" 
+                   class="center-file-link" 
+                   target="_blank">
+                    <div class="link-content">
+                        <svg viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 14H7v-2h10v2zm0-4H7v-2h10v2zm0-4H7V7h10v2z" fill="currentColor"/>
+                        </svg>
+                        <div class="link-text">
+                            <div class="link-title">פתח את תיק המרכז</div>
+                            <div class="link-description">מעקב אחר משימות ותכנית עבודה</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="week-section">
+                <h2 class="week-title">שבוע ראשון</h2>
+                <div class="category">
+                    <h3 class="category-title">תפעול</h3>
+                    <ul class="task-list">
+                        <li data-task-id="task1">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>נושאים תפעוליים בדגש על שופרסל ומשרדיה: צפייה במצגת/סרטון</span>
+                                <a href="https://unistream1.sharepoint.com/sites/Unistream/DocLib/Forms/1.aspx?id=%2Fsites%2FUnistream%2FDocLib%2F%D7%A7%D7%91%D7%A6%D7%99%D7%9D%20%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94%20%D7%A2%D7%91%D7%95%D7%A8%20%D7%9E%D7%A0%D7%94%D7%9C%D7%99%D7%9D%2F%D7%9E%D7%AA%D7%97%D7%93%D7%93%D7%99%D7%9D%2F%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D%20%D7%9C%D7%99%D7%90%D7%95%D7%A8%2Epdf" 
+                                   class="resource-link" 
+                                   target="_blank">
+                                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; margin-right: 5px;">
+                                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                    </svg>
+                                    מצגת אירועים
+                                </a>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('נושאים תפעוליים - שופרסל ומשרדיה')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                        <li data-task-id="task2">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>קליטה מנהלתית: מיילים, סיסמאות</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('קליטה מנהלתית')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                        <li data-task-id="task3">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>כניסה לקבוצות וואטסאפ</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('כניסה לקבוצות וואטסאפ')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">מערכות</h3>
+                    <ul class="task-list">
+                        <li data-task-id="task4">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>היכרות עם מערכת "סלייפסורס" (סרטון)</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('היכרות עם מערכת סלייפסורס')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                        <li data-task-id="task5">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>היכרות עם מערכת דיווח שעות</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('היכרות עם מערכת דיווח שעות')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                        <li data-task-id="task6">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>סרטון הסבר על "שיירפויינט"</span>
+                                <a href="https://view.genially.com/613daa921ff7c71021eeb1bb" 
+                                   class="resource-link" 
+                                   target="_blank">
+                                    <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; margin-right: 5px;">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+                                    </svg>
+                                    לומדת שיירפוינט
+                                </a>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('סרטון הסבר על שיירפויינט')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="week-section">
+                <h2 class="week-title">שבוע שני</h2>
+                <div class="category">
+                    <h3 class="category-title">תפעול</h3>
+                    <ul class="task-list">
+                        <li data-task-id="task7">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>בניית תכנית עבודה קדימה בהתאם לגאנט</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('בניית תכנית עבודה לפי גאנט')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">פגישות</h3>
+                    <ul class="task-list">
+                        <li data-task-id="task8">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>פגישות אישיות עם חניכים</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('פגישות אישיות עם חניכים')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                        <li data-task-id="task9">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>מפגשים עם שותפים</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('מפגשים עם שותפים')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="week-section">
+                <h2 class="week-title">שבוע שלישי</h2>
+                <div class="category">
+                    <h3 class="category-title">מערכות</h3>
+                    <ul class="task-list">
+                        <li data-task-id="task10">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>בניית תוכנית עבודה למרכז והגדרת מטרות</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('בניית תוכנית עבודה למרכז')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">פגישות</h3>
+                    <ul class="task-list">
+                        <li data-task-id="task11">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
+                            <div class="task-content">
+                                <span>פגישה עם שותפים: מלווים עסקיים, רשויות וחברות מאמצות</span>
+                            </div>
+                            <button class="schedule-btn" onclick="scheduleTask('פגישה עם שותפים ומלווים')">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4Zm0,16H5V10H19ZM19,8H5V6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2Z"/>
+                                </svg>
+                                תזמן משימה
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="links-section">
+                <h2 class="week-title">קישורים חשובים</h2>
+                <div class="links-category">
+                    <h3 class="links-category-title">מידע כללי</h3>
+                    <a href="https://unistream123.wixsite.com/welcome/about" class="link-button" target="_blank">
+                        <div class="link-title">אתר ברוכים הבאים</div>
+                        <div class="link-description">מידע מקיף על התכנית והארגון</div>
+                    </a>
+                    <a href="https://unistream1.sharepoint.com/:p:/r/sites/Unistream/_layouts/15/Doc.aspx?sourcedoc=%7BA584A74B-C4CA-4398-BF9C-3291842CB193%7D&file=%25u05de%25u05e0%25u05d4%25u05dc%25u05d5%25u05ea%20%20%25u05d4%25u05db%25u05e9%25u05e8%25u05d4%202023.pptx&action=edit&mobileredirect=" class="link-button" target="_blank">
+                        <div class="link-title">מנהלות</div>
+                        <div class="link-description">מצגת הכשרה למנהלים 2023</div>
+                    </a>
+                </div>
+
+                <div class="links-category">
+                    <h3 class="links-category-title">הקלטות חשות</h3>
+                    <a href="https://us02web.zoom.us/rec/share/BcIS20bezxPpe9nLjy74BGg5tGtkoT6GMkestDzZkefLP1wLxviecK6NQQpV406X.L4n9zMr6vvWpmHnH" class="link-button" target="_blank">
+                        <div class="link-title">הקלטת חשיפה 1</div>
+                        <div class="link-description">קוד כניסה: 7xJKey</div>
+                    </a>
+                    <a href="https://us02web.zoom.us/rec/share/3ZD5U71AYPCh341IWcfKtznOfqfAGoADKSWFKZLBRo9DYg1FRcuoJSUsiPmsmp0L.IomdObd3atrkB_QR" class="link-button" target="_blank">
+                        <div class="link-title">הקלטת חשיפה 2</div>
+                        <div class="link-description">קוד כניסה: 7xJKey</div>
+                    </a>
+                    <a href="https://us02web.zoom.us/rec/share/XSqxM_sF50xVgVA6zlwYa91m_a-ezcfniTkpR4nJbb3HSrUhZz5iJ2htYfUQJ4PW.k-qAbEMRj5GXhNWI" class="link-button" target="_blank">
+                        <div class="link-title">הקלטת חשיפה 3</div>
+                        <div class="link-description">קוד כניסה: 5FWv5H</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="export-panel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+        background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 5px;">
+        <div id="password-check">
+            <label for="admin-password">סיסמת מנהל:</label>
+            <input type="password" id="admin-password">
+            <button onclick="checkPassword()">אישור</button>
+            <button onclick="closeExport()">ביטול</button>
+        </div>
+        <div id="content-export" style="display: none;">
+            <textarea id="export-content" style="width: 500px; height: 300px; direction: ltr;"></textarea>
+            <br>
+            <button onclick="closeExport()">סגור</button>
+        </div>
+    </div>
+
+    <div class="edit-buttons">
+        <button class="edit-button export-btn" onclick="exportContent()">ייצא שינויים</button>
+        <button class="edit-button edit-mode-btn" onclick="toggleEditMode()">מצב עריכה</button>
+    </div>
+
+    <script>
+        function exportContent() {
+            const exportPanel = document.getElementById('export-panel');
+            document.getElementById('password-check').style.display = 'block';
+            document.getElementById('content-export').style.display = 'none';
+            exportPanel.style.display = 'block';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('admin-password').value;
+            if (password === "230190") {  // בדיקה ישירה של הסיסמה
+                document.getElementById('password-check').style.display = 'none';
+                document.getElementById('content-export').style.display = 'block';
+                const container = document.querySelector('.container');
+                document.getElementById('export-content').value = container.innerHTML;
+                document.getElementById('admin-password').value = '';
+            } else {
+                alert('סיסמה שגויה');
+            }
+        }
+
+        function toggleEditMode() {
+            if (document.designMode === "on") {
+                document.designMode = "off";
+                document.querySelector('.edit-mode-btn').textContent = "מצב עריכה";
+                // הסרת המאזינים בעת יציאה ממצב עריכה
+                document.removeEventListener('mouseover', handleElementHover);
+                return;
+            }
+
+            const password = prompt("הכנס סיסמת מנהל:");
+            if (password === "230190") {
+                document.designMode = "on";
+                document.querySelector('.edit-mode-btn').textContent = "סיום עריכה";
+                
+                // הוספת מאזינים לאלמנטים בעת כניסה למצב עריכה
+                document.addEventListener('mouseover', handleElementHover);
+            } else {
+                alert('סיסמה שגויה');
+            }
+        }
+
+        function handleElementHover(e) {
+            if (document.designMode === "on") {
+                const target = e.target;
+                
+                // הוספת סגנון hover לאלמנט
+                target.style.cursor = 'pointer';
+                target.style.outline = '2px dashed #007bff';
+                
+                // הסרת הסגנון כשהעכבר יוצא מהאלמנט
+                target.addEventListener('mouseout', function() {
+                    target.style.outline = 'none';
+                }, { once: true });
+            }
+        }
+
+        function scheduleTask(taskName) {
+            // יצירת תאריך ושעה לברירת מחדל (שעה מעכשיו)
+            const now = new Date();
+            const later = new Date(now.getTime() + (60 * 60 * 1000));
+            
+            // פורמט התאריך והשעה לפורמט של אאוטלוק
+            const startTime = formatDateForOutlook(later);
+            const endTime = formatDateForOutlook(new Date(later.getTime() + (60 * 60 * 1000)));
+            
+            // יצירת קישור לאאוטלוק בדפדפן
+            const outlookWebUrl = `https://outlook.office.com/calendar/action/compose?subject=${encodeURIComponent(taskName)}&startdt=${startTime}&enddt=${endTime}`;
+            
+            // פתיחת אאוטלוק בדפדפן
+            window.open(outlookWebUrl, '_blank');
+        }
+
+        function formatDateForOutlook(date) {
+            return date.toISOString().replace(/[.]\d{3}Z$/, 'Z');
+        }
+
+        // טעינת המצב השמור בעת טעינת הדף
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTaskStates();
+            document.designMode = "off";
+        });
+
+        function toggleTask(checkbox) {
+            const taskItem = checkbox.closest('li');
+            const taskContent = taskItem.querySelector('.task-content');
+            const taskId = taskItem.dataset.taskId;
+            
+            if (checkbox.checked) {
+                taskItem.classList.add('task-completed');
+                taskContent.classList.add('completed');
+            } else {
+                taskItem.classList.remove('task-completed');
+                taskContent.classList.remove('completed');
+            }
+            
+            // שמירת המצב
+            saveTaskStates();
+        }
+
+        function saveTaskStates() {
+            const taskStates = {};
+            document.querySelectorAll('.task-list li').forEach(taskItem => {
+                const taskId = taskItem.dataset.taskId;
+                const isChecked = taskItem.querySelector('.task-checkbox').checked;
+                taskStates[taskId] = isChecked;
+            });
+            localStorage.setItem('taskStates', JSON.stringify(taskStates));
+        }
+
+        function loadTaskStates() {
+            const savedStates = localStorage.getItem('taskStates');
+            if (savedStates) {
+                const taskStates = JSON.parse(savedStates);
+                Object.entries(taskStates).forEach(([taskId, isChecked]) => {
+                    const taskItem = document.querySelector(`li[data-task-id="${taskId}"]`);
+                    if (taskItem) {
+                        const checkbox = taskItem.querySelector('.task-checkbox');
+                        checkbox.checked = isChecked;
+                        if (isChecked) {
+                            taskItem.classList.add('task-completed');
+                            taskItem.querySelector('.task-content').classList.add('completed');
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

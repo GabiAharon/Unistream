@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מילון מושגים - יוניסטרים</title>
+    <style>
+        body {
+            font-family: Assistant, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.postimg.cc/vBqFRgD3/img-6.webp');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px 20px 0 0;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.95));
+        }
+
+        .nav {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .week-section {
+            margin: 20px;
+            padding: 20px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .week-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .week-title {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .category-title {
+            color: #0056b3;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .task-list li {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .task-list li:hover {
+            background: rgba(0,123,255,0.05);
+            padding-right: 20px;
+        }
+
+        .edit-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .edit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-wrapper {
+            padding: 20px;
+        }
+
+        .header h1 {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .dictionary-item {
+            margin: 20px;
+            padding: 20px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .dictionary-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .term {
+            color: #007bff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .definition {
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(0,123,255,0.02);
+        }
+
+        .edit-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .edit-button {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .export-btn {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+        }
+
+        .edit-mode-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        #export-panel {
+            z-index: 1001;
+        }
+
+        .links-section {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .links-category {
+            margin: 20px 0;
+        }
+
+        .links-category-title {
+            color: #0056b3;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .link-button {
+            display: block;
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(45deg, #e9ecef, #dee2e6);
+        }
+
+        .link-button .link-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+
+        .link-button .link-description {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        .system-link {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .system-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.2);
+            background: linear-gradient(45deg, #0056b3, #0097a7);
+        }
+
+        .system-link .link-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dictionary-item ul {
+            margin: 10px 0;
+            padding-right: 20px;
+        }
+
+        .dictionary-item li {
+            margin: 5px 0;
+            position: relative;
+        }
+
+        .dictionary-item li::before {
+            content: "•";
+            color: #007bff;
+            font-weight: bold;
+            position: absolute;
+            right: -15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-image"></div>
+        <div class="content-wrapper">
+            <div class="header">
+                <h1>מילון מושגים של יוניסטרים</h1>
+            </div>
+
+            <div class="nav">
+                <a href="index.html">דף ראשי</a>
+                <a href="dictionary.html">מילון מושגים</a>
+                <a href="https://www.canva.com/design/DAGMOY97uT4/j_HGbOSYYpHanaXlO01g4Q/edit" target="_blank">גאנט שנתי</a>
+            </div>
+
+            <div class="dictionary-content">
+                <h2 style="color: #007bff; margin-bottom: 20px;">תכניות</h2>
+                
+                <div class="dictionary-item">
+                    <div class="term">Edventure</div>
+                    <div class="definition">
+                        תכנית הדגל של יוניסטרים, תכנית תלת שנתית (שנים ט'-י"א) המכשירה בני נוער מהפריפריה ליזמות עסקית, חברתית וטכנולוגית. התכנית כוללת הקמת סטארט-אפ, ליווי מנטורים, פיתוח מיומנויות רלוונטיות לשו העבודה ועוד.
+                        <div style="margin-top: 15px; padding-right: 20px;">
+                            <div style="color: #0056b3; font-weight: bold; margin-bottom: 10px;">שלבי התכנית:</div>
+                            <div style="margin-bottom: 8px;"><strong>Junior</strong> - שנת הלימודים הראשונה בתכנית</div>
+                            <div style="margin-bottom: 8px;"><strong>Senior</strong> - שנת הלימודים השנייה בתכנית</div>
+                            <div style="margin-bottom: 8px;"><strong>Expert</strong> - שנת הלימודים השלישית בתכנית</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dictionary-item">
+                    <div class="term">StartUpNow (SUN)</div>
+                    <div class="definition">
+                        תכנית יזמות חד שנתית המכשירה כ-2000 בני נוער ליזמות עסקית וחדשנות. התכנית כוללת פיתוח מיזם, ליווי מנטורים ופיתוח מיומנויות חשיבה יצירתית.
+                    </div>
+                </div>
+
+                <div class="dictionary-item">
+                    <div class="term">NFTE</div>
+                    <div class="definition">
+                        תכנית יזמות חד שנתית בינלאומית הפועלת בישראל במסגרת יוניסטרים. התכנית מכשירה בני נוער ליזמות עסקית תוך רכישת מיומנויות וכישורי חיים.
+                    </div>
+                </div>
+
+                <h2 style="color: #007bff; margin: 40px 0 20px;">אירועים</h2>
+                
+                <h3 style="color: #0056b3; margin: 20px 0;">שנה א'</h3>
+                <div class="dictionary-item">
+                    <div class="term">ועדות GO NO GO</div>
+                    <div class="definition">
+                        אירועים המתקיימים במרץ-אפריל בהם חניכי יוניסטרים מציגים את המיזמים שלהם בפני מנהלים בכירים מחברות שונות. האירועים מאפשרים לחניכים להתנסות בפרזנטציה, לקבל משוב ולשפר את המיזמים.
+                    </div>
+                </div>
+
+                <h3 style="color: #0056b3; margin: 20px 0;">שנים ב'-ג'</h3>
+                <div class="dictionary-item">
+                    <div class="term">פאנל השקעות</div>
+                    <div class="definition">
+                        אירוע שיא לחניכי שנה ג' בתכנית Edventure, בו הם מציגים את המיזמים שלהם בפני משקיעים פוטנציאליים. האירוע מדמה גיוס הון אמיתי ומתקיים באנגלית.
+                    </div>
+                </div>
+
+                <h3 style="color: #0056b3; margin: 20px 0;">כלל השנים</h3>
+                <div class="dictionary-item">
+                    <div class="term">תחרות מיזם השנה</div>
+                    <div class="definition">
+                        תחרות שנתית בה מתחרים כ-90 מיזמים של בני נוער על תואר המיזם הטוב ביותר. התחרות מחולקת לקטגוריות לפי שנת לימודים.
+                    </div>
+                </div>
+
+                <h2 style="color: #007bff; margin: 40px 0 20px;">מערכות</h2>
+
+                <div class="dictionary-item">
+                    <div class="term">Salesforce</div>
+                    <div class="definition">
+                        מערכת לתיעוד מפגשים, רישום ומעקב נוכחות חניכים. יש לעדכן בסוף כל יום או לכל המאוחר עד ליום חמישי של אותו שבוע.
+                        <a href="https://unistream.my.salesforce.com/?ec=302&startURL=%2Fvisualforce%2Fsession%3Furl%3Dhttps%253A%252F%252Funistream.lightning.force.com%252Flightning%252Fpage%252Fhome" 
+                           class="system-link" 
+                           target="_blank">
+                            <div class="link-content">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+                                    <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" fill="currentColor"/>
+                                </svg>
+                                <span>כניסה למערכת Salesforce</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="dictionary-item">
+                    <div class="term">UNINET</div>
+                    <div class="definition">
+                        מערכת דיווחי שעות עבודה - בה נדווח את שעות העבודה או בכל סיום יום או לכל המאוחר עד יום חמישי של אותו שבוע. 
+                        במערכת זו יועלו:
+                        <ul>
+                            <li>חשבוניות הוצאות</li>
+                            <li>דיווח נסיעות (עפ"י המוסכם בחוזה העבודה)</li>
+                            <li>אישורי מחלה</li>
+                            <li>אישורי חופשה</li>
+                        </ul>
+                        <a href="https://app.unistream.co.il/dashboard" 
+                           class="system-link" 
+                           target="_blank">
+                            <div class="link-content">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+                                    <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" fill="currentColor"/>
+                                </svg>
+                                <span>כניסה למערכת UNINET</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="dictionary-item">
+                    <div class="term">SharePoint</div>
+                    <div class="definition">
+                        מערכת המספקת גישה ל:
+                        <ul>
+                            <li>כלל מערכי התוכן</li>
+                            <li>סילבוס</li>
+                            <li>תכנית לימודים</li>
+                            <li>סיכומי הכשרות (מתחדדים והכשרות צוות)</li>
+                            <li>לומדות</li>
+                            <li>איזור אישי להעלאת תוצרים בתקופות ה-RUN</li>
+                        </ul>
+                        <a href="https://unistream1.sharepoint.com/sites/Unistream" 
+                           class="system-link" 
+                           target="_blank">
+                            <div class="link-content">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+                                    <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" fill="currentColor"/>
+                                </svg>
+                                <span>כניסה למערכת SharePoint</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="export-panel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+        background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 5px;">
+        <div id="password-check">
+            <label for="admin-password">סיסמת מנהל:</label>
+            <input type="password" id="admin-password">
+            <button onclick="checkPassword()">אישור</button>
+            <button onclick="closeExport()">ביטול</button>
+        </div>
+        <div id="content-export" style="display: none;">
+            <textarea id="export-content" style="width: 500px; height: 300px; direction: ltr;"></textarea>
+            <br>
+            <button onclick="closeExport()">סגור</button>
+        </div>
+    </div>
+
+    <div class="edit-buttons">
+        <button class="edit-button export-btn" onclick="exportContent()">ייצא שינויים</button>
+        <button class="edit-button edit-mode-btn" onclick="toggleEditMode()">מצב עריכה</button>
+    </div>
+
+    <script>
+        function exportContent() {
+            const exportPanel = document.getElementById('export-panel');
+            document.getElementById('password-check').style.display = 'block';
+            document.getElementById('content-export').style.display = 'none';
+            exportPanel.style.display = 'block';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('admin-password').value;
+            if (password === "230190") {  // בדיקה ישירה של הסיסמה
+                document.getElementById('password-check').style.display = 'none';
+                document.getElementById('content-export').style.display = 'block';
+                const container = document.querySelector('.container');
+                document.getElementById('export-content').value = container.innerHTML;
+                document.getElementById('admin-password').value = '';
+            } else {
+                alert('סיסמה שגויה');
+            }
+        }
+
+        function closeExport() {
+            const exportPanel = document.getElementById('export-panel');
+            exportPanel.style.display = 'none';
+            document.getElementById('admin-password').value = '';
+        }
+
+        function toggleEditMode() {
+            if (document.designMode === "on") {
+                document.designMode = "off";
+                document.querySelector('.edit-mode-btn').textContent = "מצב עריכה";
+                document.removeEventListener('mouseover', handleElementHover);
+                return;
+            }
+
+            const password = prompt("הכנס סיסמת מנהל:");
+            if (password === "230190") {
+                document.designMode = "on";
+                document.querySelector('.edit-mode-btn').textContent = "סיום עריכה";
+                document.addEventListener('mouseover', handleElementHover);
+            } else {
+                alert('סיסמה שגויה');
+            }
+        }
+
+        function handleElementHover(e) {
+            if (document.designMode === "on") {
+                const target = e.target;
+                target.style.cursor = 'pointer';
+                target.style.outline = '2px dashed #007bff';
+                
+                target.addEventListener('mouseout', function() {
+                    target.style.outline = 'none';
+                }, { once: true });
+            }
+        }
+    </script>
+</body>
+</html> 
