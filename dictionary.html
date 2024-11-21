@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מילון מושגים - יוניסטרים</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.postimg.cc/vBqFRgD3/img-6.webp');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px 20px 0 0;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.95));
+        }
+
+        .nav {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .week-section {
+            margin: 20px;
+            padding: 20px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .week-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .week-title {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .category-title {
+            color: #0056b3;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .task-list li {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .task-list li:hover {
+            background: rgba(0,123,255,0.05);
+            padding-right: 20px;
+        }
+
+        .edit-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .edit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-wrapper {
+            padding: 20px;
+        }
+
+        .header h1 {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .dictionary-item {
+            margin: 20px;
+            padding: 20px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .dictionary-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .term {
+            color: #007bff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .definition {
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(0,123,255,0.02);
+        }
+
+        .edit-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .edit-button {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .export-btn {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+        }
+
+        .edit-mode-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        #export-panel {
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-image"></div>
+        <div class="content-wrapper">
+            <div class="header">
+                <h1>מילון מושגים של יוניסטרים</h1>
+            </div>
+
+            <div class="nav">
+                <a href="index.html">דף ראשי</a>
+                <a href="dictionary.html">מילון מושגים</a>
+                <a href="https://www.canva.com/design/DAGMOY97uT4/j_HGbOSYYpHanaXlO01g4Q/edit" target="_blank">גאנט שנתי</a>
+            </div>
+
+            <div class="dictionary-content">
+                <h2 style="color: #007bff; margin-bottom: 20px;">תכניות</h2>
+                
+                <div class="dictionary-item">
+                    <div class="term">Edventure</div>
+                    <div class="definition">
+                        תכנית הדגל של יוניסטרים, תכנית תלת שנתית (שנים ט'-י"א) המכשירה בני נוער מהפריפריה ליזמות עסקית, חברתית וטכנולוגית. התכנית כוללת הקמת סטארט-אפ, ליווי מנטורים, פיתוח מיומנויות רלוונטיות לשוק העבודה ועוד.
+                        <div style="margin-top: 15px; padding-right: 20px;">
+                            <div style="color: #0056b3; font-weight: bold; margin-bottom: 10px;">שלבי התכנית:</div>
+                            <div style="margin-bottom: 8px;"><strong>Junior</strong> - שנת הלימודים הראשונה בתכנית</div>
+                            <div style="margin-bottom: 8px;"><strong>Senior</strong> - שנת הלימודים השנייה בתכנית</div>
+                            <div style="margin-bottom: 8px;"><strong>Expert</strong> - שנת הלימודים השלישית בתכנית</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dictionary-item">
+                    <div class="term">StartUpNow (SUN)</div>
+                    <div class="definition">
+                        תכנית יזמות חד שנתית המכשירה כ-2000 בני נוער ליזמות עסקית וחדשנות. התכנית כוללת פיתוח מיזם, ליווי מנטורים ופיתוח מיומנויות חשיבה יצירתית.
+                    </div>
+                </div>
+
+                <div class="dictionary-item">
+                    <div class="term">NFTE</div>
+                    <div class="definition">
+                        תכנית יזמות חד שנתית בינלאומית הפועלת בישראל במסגרת יוניסטרים. התכנית מכשירה בני נוער ליזמות עסקית תוך רכישת מיומנויות וכישורי חיים.
+                    </div>
+                </div>
+
+                <h2 style="color: #007bff; margin: 40px 0 20px;">אירועים</h2>
+                
+                <h3 style="color: #0056b3; margin: 20px 0;">שנה א'</h3>
+                <div class="dictionary-item">
+                    <div class="term">ועדות GO NO GO</div>
+                    <div class="definition">
+                        אירועים המתקיימים במרץ-אפריל בהם חניכי יוניסטרים מציגים את המיזמים שלהם בפני מנהלים בכירים מחברות שונות. האירועים מאפשרים לחניכים להתנסות בפרזנטציה, לקבל משוב ולשפר את המיזמים.
+                    </div>
+                </div>
+
+                <h3 style="color: #0056b3; margin: 20px 0;">שנים ב'-ג'</h3>
+                <div class="dictionary-item">
+                    <div class="term">פאנל השקעות</div>
+                    <div class="definition">
+                        אירוע שיא לחניכי שנה ג' בתכנית Edventure, בו הם מציגים את המיזמים שלהם בפני משקיעים פוטנציאליים. האירוע מדמה גיוס הון אמיתי ומתקיים באנגלית.
+                    </div>
+                </div>
+
+                <h3 style="color: #0056b3; margin: 20px 0;">כלל השנים</h3>
+                <div class="dictionary-item">
+                    <div class="term">תחרות מיזם השנה</div>
+                    <div class="definition">
+                        תחרות שנתית בה מתחרים כ-90 מיזמים של בני נוער על תואר המיזם הטוב ביותר. התחרות מחולקת לקטגוריות לפי שנת לימודים.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="export-panel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+        background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 5px;">
+        <div id="password-check">
+            <label for="admin-password">סיסמת מנהל:</label>
+            <input type="password" id="admin-password">
+            <button onclick="checkPassword()">אישור</button>
+            <button onclick="closeExport()">ביטול</button>
+        </div>
+        <div id="content-export" style="display: none;">
+            <textarea id="export-content" style="width: 500px; height: 300px; direction: ltr;"></textarea>
+            <br>
+            <button onclick="closeExport()">סגור</button>
+        </div>
+    </div>
+
+    <div class="edit-buttons">
+        <button class="edit-button export-btn" onclick="exportContent()">ייצא שינויים</button>
+        <button class="edit-button edit-mode-btn" onclick="toggleEditMode()">מצב עריכה</button>
+    </div>
+
+    <script>
+        function exportContent() {
+            const exportPanel = document.getElementById('export-panel');
+            document.getElementById('password-check').style.display = 'block';
+            document.getElementById('content-export').style.display = 'none';
+            exportPanel.style.display = 'block';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('admin-password').value;
+            const hashedPassword = hashCode(password);
+            if (hashedPassword === 1234773766) {
+                document.getElementById('password-check').style.display = 'none';
+                document.getElementById('content-export').style.display = 'block';
+                const container = document.querySelector('.container');
+                document.getElementById('export-content').value = container.innerHTML;
+                document.getElementById('admin-password').value = '';
+            } else {
+                alert('סיסמה שגויה');
+            }
+        }
+
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash;
+        }
+
+        function closeExport() {
+            const exportPanel = document.getElementById('export-panel');
+            exportPanel.style.display = 'none';
+            document.getElementById('admin-password').value = '';
+        }
+
+        function toggleEditMode() {
+            document.designMode = document.designMode === "on" ? "off" : "on";
+            const editButton = document.querySelector('.edit-mode-btn');
+            editButton.textContent = document.designMode === "on" ? "סיום עריכה" : "מצב עריכה";
+        }
+    </script>
+</body>
+</html> 
