@@ -90,7 +90,6 @@
             border-radius: 15px;
             background: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
         }
 
         .week-section:hover {
@@ -724,14 +723,14 @@
                     <div class="grid-description">מידע מקיף על התכנית והארגון</div>
                 </a>
                 
-                <a href="https://unistream1.sharepoint.com/:p:/r/sites/Unistream/_layouts/15/Doc.aspx?sourcedoc=%7BA584A74B-C4CA-4398-BF9C-3291842CB193%7D" class="grid-item" data-step="2" target="_blank">
-                    <div class="grid-icon">📊</div>
-                    <div class="grid-title">מנהלות</div>
-                    <div class="grid-description">מצגת הכשרה למנהלים 2023</div>
+                <a href="dictionary.html" class="grid-item" data-step="2">
+                    <div class="grid-icon">📖</div>
+                    <div class="grid-title">מילון מושגים</div>
+                    <div class="grid-description">מושגים חשובים שכדאי להכיר</div>
                 </a>
 
                 <a href="https://unistream1.sharepoint.com/sites/Unistream/SitePages/%D7%A1%D7%99%D7%9B%D7%95%D7%9E%D7%99-%D7%94%D7%9B%D7%A9%D7%A8%D7%95%D7%AA.aspx" class="grid-item" data-step="3" target="_blank">
-                    <div class="grid-icon">��</div>
+                    <div class="grid-icon">📝</div>
                     <div class="grid-title">סיכומי הכשרות</div>
                     <div class="grid-description">סיכומי הכשרות צוות ומתחדדים</div>
                 </a>
@@ -746,11 +745,9 @@
                             <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
                             <div class="task-content">
                                 <span>נושאים תפעוליים בדגש על שופרסל ומשרדיה: צפייה במצגת</span>
-                                <a href="https://unistream1.sharepoint.com/:p:/r/sites/Unistream/_layouts/15/Doc.aspx?sourcedoc=%7B00A863FA-76C5-4976-B2B4-196B1F4433DD%7D&file=%D7%9E%D7%A6%D7%92%D7%AA%20%D7%AA%D7%A4%D7%A2%D7%95%D7%9C%20%D7%9C%D7%99%D7%95%D7%9D%20%D7%94%D7%9B%D7%A9%D7%A8%D7%94.pptx&action=edit&mobileredirect=true" 
-                                   class="resource-link" 
-                                   target="_blank">
+                                <a href="https://unistream1.sharepoint.com/:p:/r/sites/Unistream/_layouts/15/Doc.aspx?sourcedoc=%7BFCBA93F1-D162-46A2-8E35-F9C447C0476C%7D&file=%25u05ea%25u05e4%25u05e2%25u05d5%25u05dc%20%25u05d7%25u05db%25u05dd%20-%202024.25.pptx&action=edit&mobileredirect=true" class="resource-link" target="_blank">
                                     <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; margin-right: 5px;">
-                                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
                                     </svg>
                                     מצגת תפעול
                                 </a>
@@ -765,7 +762,7 @@
                         <li data-task-id="task2">
                             <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
                             <div class="task-content">
-                                <span>קליטה מנהלתית: מיילים, סיסמאות (��תחברות לערכת דיווחי שעות, אאוטלוק, שיירפוינט)</span>
+                                <span>קליטה מנהלתית: מיילים, סיסמאות (תחברות לערכת דיווחי שעות, אאוטלוק, שיירפוינט)</span>
                             </div>
                             <button class="schedule-btn" onclick="scheduleTask('קליטה מנהלתית')">
                                 <svg viewBox="0 0 24 24">
@@ -990,7 +987,7 @@
         async function decryptLink(centerName) {
             const password = prompt("הכנס סיסמה:");
             
-            // בדי��ת הרשאות
+            // בדיקת הרשאות
             const centerConfig = ACCESS_CONFIG.centers[centerName];
             if (!centerConfig) {
                 alert('מרכז לא קיים');
