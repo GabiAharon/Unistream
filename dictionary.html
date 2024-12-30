@@ -34,8 +34,9 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             transition: transform 0.3s ease;
             width: 90%;
-            margin-right: auto;
+            margin-right: 280px; /* מרווח לתפריט הצדדי */
             margin-left: auto;
+            position: relative;
         }
 
         .container:hover {
@@ -318,25 +319,27 @@
 
         .side-nav {
             position: fixed;
-            right: 20px;
-            top: 20px;
+            top: 0;
+            right: 0;
             width: 250px;
-            height: calc(100vh - 40px);
+            height: 100vh;
             background: rgba(255, 255, 255, 0.95);
             padding: 20px;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
-            border-radius: 15px;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            direction: rtl;
         }
 
         .nav-section ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .nav-section ul ul {
             padding-right: 20px;
+            margin: 5px 0;
         }
 
         .nav-section a {
@@ -467,6 +470,347 @@
             gap: 10px;
             margin-top: 15px;
         }
+
+        .faq-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .faq-category {
+            color: #0056b3;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .faq-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            color: #007bff;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .faq-answer {
+            color: #495057;
+            font-size: 0.95em;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+
+        .faq-answer li {
+            margin: 5px 0;
+        }
+
+        .info-box, .warning-box {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border: 1px solid #ffe0b2;
+            color: #e65100;
+        }
+
+        .link-box {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .link-box a {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .link-box a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+
+        .process-box {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f0f4f8;
+            border: 1px solid #d0def5;
+        }
+
+        .process-box strong {
+            color: #2c5282;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .process-box ol, .process-box ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .process-box li {
+            margin: 8px 0;
+        }
+
+        .collapsible-section {
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .collapsible-button {
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border: none;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-button:hover {
+            background: #f8f9fa;
+        }
+
+        .collapsible-button .arrow {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-button.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            padding: 0 20px 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 25px;
+            background: white;
+            color: #007bff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            background: #f0f7ff;
+        }
+
+        .category-btn.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .faq-category-content {
+            display: none;
+        }
+
+        .faq-category-content.active {
+            display: block;
+        }
+
+        /* Update search container styling */
+        .search-container {
+            position: relative;
+            margin: 20px;
+            max-width: 90%;
+            width: auto;
+        }
+
+        #searchInput {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        #searchResults {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .search-result-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .search-result-item:hover {
+            background: #f8f9fa;
+            padding-right: 30px;
+        }
+
+        .search-result-item::before {
+            content: "→";
+            position: absolute;
+            right: 15px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: #007bff;
+        }
+
+        .search-result-item:hover::before {
+            opacity: 1;
+            right: 10px;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Add Salesforce terms table styles */
+        .salesforce-terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .salesforce-terms-table th,
+        .salesforce-terms-table td {
+            padding: 15px;
+            text-align: right;
+            border: 1px solid #e0e0e0;
+        }
+
+        .salesforce-terms-table th {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            color: white;
+            font-weight: bold;
+        }
+
+        .salesforce-terms-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .salesforce-terms-table tr:hover {
+            background-color: #f0f7ff;
+        }
+
+        .faq-main-section {
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            margin: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,123,255,0.2);
+        }
+
+        .faq-title {
+            color: white !important;
+            font-size: 2em !important;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .collapsible-button {
+            background: transparent;
+        }
+
+        .collapsible-button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .collapsible-button .arrow {
+            color: white;
+        }
+
+        /* Add highlight animation */
+        @keyframes highlight {
+            0% { background-color: rgba(0, 123, 255, 0.2); }
+            100% { background-color: transparent; }
+        }
+
+        /* Add pilot program badge styles */
+        .pilot-tag {
+            background-color: #ff6b6b;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 9999;
+            -webkit-text-fill-color: initial !important;
+        }
+
+        .pilot-program {
+            border-left: 4px solid #FF6B6B;
+            padding-left: 15px;
+            background: linear-gradient(to right, rgba(255, 107, 107, 0.05), transparent);
+        }
     </style>
 </head>
 <body>
@@ -483,8 +827,385 @@
                 <a href="https://www.canva.com/design/DAGMOY97uT4/j_HGbOSYYpHanaXlO01g4Q/edit" target="_blank">גאנט שנתי</a>
             </div>
 
+            <div class="side-nav">
+                <div class="nav-section">
+                    <h3>תוכן עניינים</h3>
+                    <ul>
+                        <li><a href="#programs">תכניות</a>
+                            <ul>
+                                <li><a href="#edventure">Edventure</a></li>
+                                <li><a href="#sun">StartUpNow</a></li>
+                                <li><a href="#nfte">NFTE</a></li>
+                                <li><a href="#nextream">Nextream</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#events">אירועים</a>
+                            <ul>
+                                <li><a href="#first-year">שנה א'</a></li>
+                                <li><a href="#second-year">שנים ב'-ג'</a></li>
+                                <li><a href="#all-years">כלל השנים</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#systems">מערכות</a>
+                            <ul>
+                                <li><a href="#salesforce">Salesforce</a></li>
+                                <li><a href="#uninet">UNINET</a></li>
+                                <li><a href="#sharepoint">SharePoint</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#documents">טפסים ומסמכים חשובים</a>
+                            <ul>
+                                <li><a href="#student-charter">אמנת חניך</a></li>
+                                <li><a href="#health-declaration">הצהרת בריאות</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#budget">תקציב ותפעול</a>
+                            <ul>
+                                <li><a href="#shufersal-budget">תקציב שופרסל</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#mentoring">ליווי ומנטורינג</a>
+                            <ul>
+                                <li><a href="#business-mentor">מלווה עסקי</a></li>
+                                <li><a href="#business-fellow">עמית עסקי</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#training">הכשרות והדרכה</a>
+                            <ul>
+                                <li><a href="#managers-training">הכשרת מנהלים</a></li>
+                                <li><a href="#mithadedim">מתחדדים</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="quiz.html" style="display: block; text-align: center; margin-top: 20px; padding: 8px 15px; background: linear-gradient(45deg, #28a745, #20c997); color: white; text-decoration: none; border-radius: 20px;">בחן את עצמך</a>
+                </div>
+                <div class="progress-tracker">
+                    <h3>מעקב למידה</h3>
+                    <p class="progress-info">סמן ✓ ליד כל מושג שלמדת והבנת כדי לעקוב אחר התקדמותך</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text">0% מהמושגים נלמדו</span>
+                </div>
+            </div>
+
+            <!-- Add search bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="חיפוש מהיר..." class="search-input">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+
             <div class="dictionary-content">
-                <h2 id="programs" style="color: #007bff; margin-bottom: 20px;">תכניות</h2>
+                <!-- Collapsible FAQ Section with updated styling -->
+                <div class="collapsible-section faq-main-section">
+                    <button class="collapsible-button" onclick="toggleSection('faq-main')">
+                        <h2 id="faq" class="faq-title">שאלות ותשובות נפוצות</h2>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div id="faq-main" class="collapsible-content" style="display: none;">
+                        <div class="category-buttons">
+                            <button class="category-btn active" onclick="showFAQCategory('operations')">תפעול</button>
+                            <button class="category-btn" onclick="showFAQCategory('training')">הכשרות והקלטות</button>
+                            <button class="category-btn" onclick="showFAQCategory('salesforce')">Salesforce</button>
+                        </div>
+                        
+                        <!-- FAQ Operations Section -->
+                        <div id="operations" class="faq-category-content">
+                            <div class="faq-grid">
+                                <!-- Existing FAQ cards here -->
+                                <div class="faq-card">
+                                    <div class="faq-question">מתי אני פונה לליאור?</div>
+                                    <div class="faq-answer">
+                                        <div class="info-box">
+                                            <strong>פניה לליאור בנושאים הבאים:</strong>
+                                            <ul>
+                                                <li>תקלות במבנה שלא נפתרו מול הרשות</li>
+                                                <li>אישור ספקים חדשים</li>
+                                                <li>תקציב שוטף ותקציב שופרסל</li>
+                                                <li>בעיות עם ציוד משרדי</li>
+                                            </ul>
+                                        </div>
+                                        <div class="contact-box">
+                                            <strong>פרטי התקשרות:</strong>
+                                            <ul>
+                                                <li>מייל: operation@unistream.co.il</li>
+                                                <li>טלפון: 054-3546108</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="faq-card">
+                                    <div class="faq-question">איך אני מטפל/ת בתקלות במבנה?</div>
+                                    <div class="faq-answer">
+                                        <ol>
+                                            <li>פנייה ראשונית לרשות המקומית לתיקון התקלה</li>
+                                            <li>אם אין מענה לאחר שבוע - פנייה למנהל/ת האזור</li>
+                                            <li>מנהל/ת האזור יעדכן את מנהל/ת התפעול</li>
+                                        </ol>
+                                        <div class="info-box">
+                                            <strong>סוגי תקלות לדוגמה:</strong>
+                                            <ul>
+                                                <li>מזגן תקול</li>
+                                                <li>נזילות</li>
+                                                <li>בעיות חשמל</li>
+                                                <li>בעיות בדלתות או חלונות</li>
+                                                <li>תקלות באינסטלציה</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-card">
+                                    <div class="faq-question">איך מזמינים ציוד משרדי?</div>
+                                    <div class="faq-answer">
+                                        <ul>
+                                            <li>תקציב: 350 ₪ לחודשיים</li>
+                                            <li>הזמנה דרך אתר משרדיה</li>
+                                            <li>אין לקנות ציוד מחשוב וריהוט ללא אישור מנהל התפעול</li>
+                                        </ul>
+                                        <div class="link-box">
+                                            <a href="https://www.misradia.co.il/?gclid=Cj0KCQjw_5unBhCMARIsACZyzS01GtQeGs_TTyB6xh1BDy6WYgMcUBskBhCyDBZrN7jlb8wYrzIeJa8aAvdzEALw_wcB" target="_blank">
+                                                לאתר משרדיה →
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="faq-card">
+                                    <div class="faq-question">איך מטפלים בתקלות במכשיר תמי 4?</div>
+                                    <div class="faq-answer">
+                                        <ol>
+                                            <li>שליחת מייל למנהל התפעול ומנהל האזור עם:
+                                                <ul>
+                                                    <li>פירוט התקלה</li>
+                                                    <li>כתובת מרכז היזמות</li>
+                                                    <li>פרטי איש קשר לטכנאי</li>
+                                                </ul>
+                                            </li>
+                                            <li>תיאום טכנאי בזמן נוכחות במרכז</li>
+                                            <li>עדכון בסוף הטיפול</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="faq-card">
+                                    <div class="faq-question">איך פותחים ספק חדש?</div>
+                                    <div class="faq-answer">
+                                        <p>לספקים חדשים (מעל 250 ₪) נדרשים המסמכים הבאים:</p>
+                                        <ul>
+                                            <li>אישור ניהול ספרים</li>
+                                            <li>אישור פרטי חשבון להעברה (לא מוקלד)</li>
+                                            <li>אישור ניכוי מס במקור</li>
+                                        </ul>
+                                        <div class="info-box">
+                                            <strong>דגשים חשובים:</strong>
+                                            <ul>
+                                                <li>יש לוודא מול מנהל/ת התפעול לפני פתיחת ספק חדש</li>
+                                                <li>פתיחת ספק חדש רק מעל 250 שקלים</li>
+                                                <li>מקרים חריגים יאשרו על ידי מנהל/ת האזור מול מנהל/ת התפעול</li>
+                                                <li>יש לוודא שאפשר לשלם בשוטף</li>
+                                            </ul>
+                                        </div>
+                                        <div class="process-box">
+                                            <strong>תהליך העבודה:</strong>
+                                            <ol>
+                                                <li>בדיקה מול מנהל/ת התפעול אם קיים כבר ספק דומה</li>
+                                                <li>קבלת אישור עקרוני לפתיחת ספק חדש</li>
+                                                <li>איסוף כל המסמכים הנדרשים מהספק</li>
+                                                <li>העברת המסמכים למנהל/ת התפעול</li>
+                                                <li>המתנה לאישור סופי לתחילת עבודה</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="faq-card">
+                                    <div class="faq-question">מה לגבי תקציב שופרסל?</div>
+                                    <div class="faq-answer">
+                                        <p>תקציב חודשי עבור קניות למרכז היזמות, המתעדכן לפי כמות החניכים.</p>
+                                        
+                                        <div class="info-box">
+                                            <strong>מדרגות התקציב:</strong>
+                                            <ul>
+                                                <li>עד 35 חניכים - 800 ₪</li>
+                                                <li>30-35 חניכים - 1000 ₪</li>
+                                                <li>מעל 50 חניכים - 1200 ₪</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="process-box">
+                                            <strong>תהליך חודשי:</strong>
+                                            <ul>
+                                                <li>ב-20 לחודש: בדיקת כמות החניכים הכללית במרכז (שנים א'-ג')</li>
+                                                <li>תחילת חודש: שליחת חשבוניות החודש הקודם לליאור מנהלת התפעול</li>
+                                                <li>עד ה-10 לחודש: העברת התקציב באפליקציית פייבוקס</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="warning-box">
+                                            <strong>שימו לב:</strong>
+                                            <ul>
+                                                <li>ללא קבלות לא ניתן להטעין את תווי שופרסל</li>
+                                                <li>חשוב לשמור את כל החשבוניות לדיווח החודשי</li>
+                                                <li>יש לוודא שהחשבוניות תקינות ומפורטות</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="faq-card">
+                                    <div class="faq-question">מדפסות, דיו וציוד מחשוב</div>
+                                    <div class="faq-answer">
+                                        <ol>
+                                            <li>עבור הזמנת דיו למדפסת או תקלות במחשבים יש לשלוח מייל לדורון (איש IT) עם העתק למנהלת התפעול ומנהל.ת האזור</li>
+                                        </ol>
+                                        <div class="info-box">
+                                            <strong>שעות עבודה של דורון:</strong>
+                                            <ul>
+                                                <li>ימים א',ג': 12:00-16:00</li>
+                                                <li>ימים ב',ד': יום שלם במשרד</li>
+                                            </ul>
+                                        </div>
+                                        <div class="contact-box">
+                                            <strong>פרטי התקשרות:</strong>
+                                            <ul>
+                                                <li>מייל: it@unistream.co.il</li>
+                                                <li>טלפון: 054-7366166</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="training" class="faq-category-content" style="display: none;">
+                            <div class="faq-grid">
+                                <div class="faq-card">
+                                    <div class="faq-question">איפה אני מוצא סיכומי הכשרות והקלטות חשובות?</div>
+                                    <div class="faq-answer">
+                                        <p>כל סיכומי ההכשרות וההקלטות החשובות נמצאים בשייר-פוינט של יוניסטרים.</p>
+                                        <div class="link-box">
+                                            <strong>קישורים שימושיים:</strong>
+                                            <ul>
+                                                <li>
+                                                    <a href="https://unistream1.sharepoint.com/sites/Unistream/SitePages/%D7%A1%D7%99%D7%9C%D7%91%D7%95%D7%A1%D7%99%D7%9D-%D7%9E%D7%A2%D7%95%D7%A6%D7%91%D7%99%D7%9D.aspx" target="_blank">
+                                                        סיכומי הכשרות →
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="salesforce" class="faq-category-content" style="display: none;">
+                            <div class="faq-grid">
+                                <div class="faq-card">
+                                    <div class="faq-question">איך משתמשים במערכת הסיילספורס?</div>
+                                    <div class="faq-answer">
+                                        <div class="link-box">
+                                            <strong>מדריכים וסרטוני הדרכה:</strong>
+                                            <ul>
+                                                <li>
+                                                    <a href="https://unistream1.sharepoint.com/sites/Unistream/SitePages/%D7%A1%D7%99%D7%99%D7%9C%D7%A1%D7%A4%D7%95%D7%A8%D7%A1--%D7%A1%D7%A8%D7%98%D7%95%D7%9F-%D7%94%D7%93%D7%A8%D7%9B%D7%94--%D7%A1%D7%A7%D7%99%D7%A8%D7%94-%D7%9B%D7%9C%D7%9C%D7%99%D7%AA-%D7%A9%D7%9C-%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A1%D7%99%D7%99%D7%9C%D7%A1%D7%A4%D7%95%D7%A8%D7%A1.aspx" target="_blank">
+                                                        סקירה כללית של מערכת ה-Salesforce →
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://drive.google.com/file/u/0/d/1HcJa6n_QY1I7WFs0w7QoTsjwXMsLLr9L/view?usp=sharing&pli=1" target="_blank">
+                                                        רישום חניכים במערכת →
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://unistream1.sharepoint.com/sites/Unistream/SitePages/%D7%A1%D7%99%D7%99%D7%9C%D7%A1%D7%A4%D7%95%D7%A8%D7%A1--dashboardes.aspx" target="_blank">
+                                                        Dashboards →
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://drive.google.com/file/d/16_U3NaI7VU4T-SYu2A9vKkqr1eajyjbE/view" target="_blank">
+                                                        דיווח מפגש →
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://unistream1.sharepoint.com/sites/Unistream/SitePages/%D7%A1%D7%99%D7%99%D7%9C%D7%A1%D7%A4%D7%95%D7%A8%D7%A1--%D7%93%D7%99%D7%95%D7%95%D7%9A-%D7%A2%D7%9C-%D7%97%D7%A0%D7%99%D7%9A-%D7%A9%D7%A0%D7%A9%D7%A8.aspx" target="_blank">
+                                                        דיווח על חניך שנשר →
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="info-box" style="margin-top: 20px;">
+                                            <strong>מושגים מרכזיים במערכת:</strong>
+                                            <table class="salesforce-terms-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>שם בעברית</th>
+                                                        <th>שם באנגלית</th>
+                                                        <th>תיאור</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>חשבון</td>
+                                                        <td>Account</td>
+                                                        <td>סוגים שונים של חשבונות:<br>בית ספר<br>מרכז יזמות<br>חברה עסקית</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>אנשים</td>
+                                                        <td>Contact</td>
+                                                        <td>סוגים שונים של אנשים:<br>תלמיד<br>בוגר<br>תורם<br>עובד יוניסטרים<br>מתנדב</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>סוג התוכנית</td>
+                                                        <td>Program</td>
+                                                        <td>סוגים של תכנית, לדוגמא סאן או אדוונצ'ר</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>מחזור לימודים</td>
+                                                        <td>Program Cycle</td>
+                                                        <td>מחזור שנתי/תלת שנתי של תוכנית</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>תוכנית שנת לימודים</td>
+                                                        <td>School year</td>
+                                                        <td>שנת לימודים בתכנית ספציפית</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>חניכים במחזור</td>
+                                                        <td>Cycle Participants</td>
+                                                        <td>השתתפות במחזור שנתי/תלת שנתי</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>חניכים בשנת לימודים</td>
+                                                        <td>Year Participants</td>
+                                                        <td>השתתפות בשנת הלימודים</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>מפגשים</td>
+                                                        <td>Meetings</td>
+                                                        <td>מפגשים המקושרים לשנת לימודים</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>נוכחות במפגש</td>
+                                                        <td>Attendance Meetings</td>
+                                                        <td>השתתפות במפגש</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>יום חשיפה</td>
+                                                        <td>Open Day</td>
+                                                        <td>יום חשיפה</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="programs" style="color: #007bff; margin: 40px 0 20px;">תכניות</h2>
                 
                 <div id="edventure" class="dictionary-item">
                     <div class="term">Edventure</div>
@@ -535,8 +1256,11 @@
                     </div>
                 </div>
 
-                <div id="nextream" class="dictionary-item">
-                    <div class="term">Nextream</div>
+                <div id="nextream" class="dictionary-item pilot-program">
+                    <div class="term">
+                        <div class="pilot-tag">פיילוט</div>
+                        NEXTREAM
+                    </div>
                     <div class="definition">
                         תכנית פיילוט המיועדת לבוגרי התכנית (שנה ד'). במסגרת התכנית עוברים הבוגרים הכשרה מקיפה בת שלושה ימים, בה הם:
                         <ul>
@@ -547,13 +1271,24 @@
                     </div>
                 </div>
 
+                <div id="accelerator" class="dictionary-item pilot-program">
+                    <div class="term">
+                        <div class="pilot-tag">פיילוט</div>
+                        תכנית המאיץ (אקסלרטור) לחניכי שנה ג'
+                    </div>
+                    <div class="definition">
+                        תכנית האצה שהחלה השנה ומתקיימת בחסות קרן ההון סיכון <a href="https://team8.vc/" target="_blank">Team8</a> בתל אביב.
+                        מטרת התכנית היא לעזור לחניכים להקפיץ את המיזמים שלהם לרמה הכי גבוהה שניתן. במהלך התכנית, החניכות והחניכים יקבלו כלים מעשיים בתחומי ההשקעות, הון סיכון, שיווק ומכירות וידרשו להציג רמה גבוהה באירוע פאנל השקעות.
+                    </div>
+                </div>
+
                 <h2 id="events" style="color: #007bff; margin: 40px 0 20px;">אירועים</h2>
                 
                 <h3 id="first-year" style="color: #0056b3; margin: 20px 0;">שנה א'</h3>
                 <div class="dictionary-item">
                     <div class="term">ועדות GO NO GO</div>
                     <div class="definition">
-                        אירועים המתקיימים במרץ-אפריל בהם חניכי יוניטרים מציגים את המיזמים שלהם בפני מנהלים בכירים מחברות שונות. זוהי דריסת הרגל הראשונה של החניכים בעולם היזמות ומעמד מאוד מרגש עבורם. האירועים מאפשרים לחניכים להתנסות בפרזנטציה, לקבל משוב ולשפר את המיזמים.
+                        אירועים המתקיימים במרץ-אפריל בהם חניכי יוניסטרים מציגים את המיזמים שלהם בפני מנהלים בכירים מחברות שונות. זוהי דריסת הרגל הראשונה של החניכים בעולם היזמות ומעמד מאוד מרגש עבורם. האירועים מאפשרים לחניכים להתנסות בפרזנטציה, לקבל משוב ולשפר את המיזמים.
                     </div>
                 </div>
 
@@ -588,7 +1323,7 @@
                 <div id="salesforce" class="dictionary-item">
                     <div class="term">Salesforce</div>
                     <div class="definition">
-                        מערכת לתיעוד מפגשים, רישום ומעקב נוכחות חניכים. יש לעדכן בסוף כל יום או לכל המאוחר עד ליום חמישי של אותו שבוע.
+                        מערכת לתיעוד מפגשים, רישום ומעקב נוכחות חניכים. יש לעדכן בסוף כל יום או לכל המאוחר עד יום חמישי של אותו שבוע. 
                         <div class="system-links">
                             <a href="https://unistream.my.salesforce.com/?ec=302&startURL=%2Fvisualforce%2Fsession%3Furl%3Dhttps%253A%252F%252Funistream.lightning.force.com%252Flightning%252Fpage%252Fhome" 
                                class="system-link" 
@@ -606,7 +1341,7 @@
                                target="_blank">
                                 <div class="link-content">
                                     <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
-                                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="currentColor"/>
+                                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" fill="currentColor"/>
                                     </svg>
                                     <span>חוברת הדרכה למערכת</span>
                                 </div>
@@ -698,33 +1433,6 @@
                     </div>
                 </div>
 
-                <h2 id="budget" style="color: #007bff; margin: 40px 0 20px;">תקציב ותפעול</h2>
-
-                <div id="shufersal-budget" class="dictionary-item">
-                    <div class="term">תקציב שופרסל</div>
-                    <div class="definition">
-תקציב חודשי עבור קניות למרכז היזמות                        <div class="tip-box">
-                            בכל 20 לחודש נבדקת כמות החניכים הכללית במרכז (שנים א'-ג') לקביעת התקציב לחודש הבא.
-                        </div>
-                        
-                        <h4 style="color: #0056b3; margin: 15px 0 10px;">מדרגות התקציב:</h4>
-                        <ul>
-                            <li>עד 35 חניכים - 800 ש"ח</li>
-                            <li>30-35 חניכים - 1000 ש"ח</li>
-                            <li>מעל 50 חניכים - 1200 ש"ח</li>
-                        </ul>
-
-                        <div class="info-card">
-                            <h4>נוהל דיווח:</h4>
-                            <ul>
-                                <li>בתחילת כל חודש יש לשלוח לליאור מנהלת התפעול מייל מסודר עם כל חשבוניות החודש הקודם</li>
-                                <li>ללא קבלות לא ניתן להטעין את תווי שופרסל</li>
-                                <li>התקציב יועבר עד ה-10 לחודש באפליקציית פייבוקס</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="mentoring" style="color: #007bff; margin: 40px 0 20px;">ליווי ומנטורינג</h2>
 
                 <div class="info-card">
@@ -742,6 +1450,18 @@
                     <div class="term">עמית עסקי</div>
                     <div class="definition">
                         מנטור המגיע למפגש חד פעמי ממוקד בנושא ספציפי אותו מנהל.ת המרכז מרגיש.ה שיש לחזק או להעשיר. מאפשר להביא מומחיות ממוקדת בתחומים שונים לפי צרכי הקבוצה.
+                        
+                        <div class="tip-box">
+                            אם מנהלי המרכזים רוצים להזמין עמית עסקי שהוא שלא רשום כמתנדב במערכת עליהם לשלוח לו 
+                            <a href="https://unistream.my.site.com/Applications/s/join-business-community" target="_blank">לינק רישום מתנדב</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="levelup" class="dictionary-item">
+                    <div class="term">LevelUp</div>
+                    <div class="definition">
+                        <!-- כאן יתווסף התיאור בהמשך -->
                     </div>
                 </div>
 
@@ -775,211 +1495,224 @@
                         </ul>
                     </div>
                 </div>
+
+                <script>
+                    function toggleSection(sectionId) {
+                        var content = document.getElementById(sectionId);
+                        if (content.style.display === "none") {
+                            content.style.display = "block";
+                            // Show operations category by default
+                            showFAQCategory('operations');
+                        } else {
+                            content.style.display = "none";
+                        }
+                    }
+
+                    function showFAQCategory(categoryId) {
+                        // Hide all categories
+                        document.querySelectorAll('.faq-category-content').forEach(function(category) {
+                            category.style.display = 'none';
+                        });
+                        
+                        // Remove active class from all buttons
+                        document.querySelectorAll('.category-btn').forEach(function(button) {
+                            button.classList.remove('active');
+                        });
+                        
+                        // Show selected category and activate its button
+                        document.getElementById(categoryId).style.display = 'block';
+                        document.querySelector(`button[onclick="showFAQCategory('${categoryId}')"]`).classList.add('active');
+                    }
+
+                    // Show operations category by default when FAQ section is opened
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.getElementById('operations').classList.add('active');
+                    });
+
+                    function searchContent() {
+                        const searchInput = document.getElementById('searchInput');
+                        const searchResults = document.getElementById('searchResults');
+                        const searchTerm = searchInput.value.trim().toLowerCase();
+
+                        if (searchTerm === '') {
+                            searchResults.style.display = 'none';
+                            return;
+                        }
+
+                        // Get all FAQ cards and dictionary items
+                        const faqCards = document.querySelectorAll('.faq-card');
+                        const dictionaryItems = document.querySelectorAll('.dictionary-item');
+                        const results = [];
+
+                        // Search in FAQ cards
+                        faqCards.forEach(card => {
+                            const question = card.querySelector('.faq-question').textContent;
+                            const answer = card.querySelector('.faq-answer').textContent;
+                            
+                            if (question.toLowerCase().includes(searchTerm) || 
+                                answer.toLowerCase().includes(searchTerm)) {
+                                results.push({
+                                    title: question,
+                                    element: card
+                                });
+                            }
+                        });
+
+                        // Search in dictionary items
+                        dictionaryItems.forEach(item => {
+                            const term = item.querySelector('.term').textContent;
+                            const definition = item.querySelector('.definition').textContent;
+                            
+                            if (term.toLowerCase().includes(searchTerm) || 
+                                definition.toLowerCase().includes(searchTerm)) {
+                                results.push({
+                                    title: term,
+                                    element: item
+                                });
+                            }
+                        });
+
+                        // Display results
+                        if (results.length > 0) {
+                            searchResults.innerHTML = results.map(result => `
+                                <div class="search-result-item" onclick="scrollToElement('${result.element.id}')">
+                                    ${result.title}
+                                </div>
+                            `).join('');
+                            searchResults.style.display = 'block';
+                        } else {
+                            searchResults.innerHTML = '<div class="search-result-item">לא נמצאו תוצאות</div>';
+                            searchResults.style.display = 'block';
+                        }
+                    }
+
+                    function scrollToElement(elementId) {
+                        const element = document.getElementById(elementId);
+                        if (element) {
+                            // If the element is inside FAQ section
+                            const faqMain = document.getElementById('faq-main');
+                            const faqParent = element.closest('.faq-category-content');
+                            
+                            if (faqParent) {
+                                // Open FAQ section if closed
+                                if (faqMain.style.display === 'none') {
+                                    toggleSection('faq-main');
+                                }
+                                
+                                // Show the correct FAQ category
+                                const categoryId = faqParent.id;
+                                showFAQCategory(categoryId);
+                                
+                                // Wait a bit for the sections to open
+                                setTimeout(() => {
+                                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    element.style.animation = 'highlight 2s';
+                                }, 100);
+                            } else {
+                                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                element.style.animation = 'highlight 2s';
+                            }
+                            
+                            // Clear search
+                            document.getElementById('searchInput').value = '';
+                            document.getElementById('searchResults').style.display = 'none';
+                        }
+                    }
+
+                    // Add event listener for search input
+                    document.getElementById('searchInput').addEventListener('input', searchContent);
+
+                    // Close search results when clicking outside
+                    document.addEventListener('click', function(e) {
+                        const searchContainer = document.querySelector('.search-container');
+                        const searchResults = document.getElementById('searchResults');
+                        
+                        if (!searchContainer.contains(e.target)) {
+                            searchResults.style.display = 'none';
+                        }
+                    });
+                </script>
             </div>
-        </div>
-    </div>
-
-    <div id="export-panel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-        background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 5px;">
-        <div id="password-check">
-            <label for="admin-password">סיסמת מנהל:</label>
-            <input type="password" id="admin-password">
-            <button onclick="checkPassword()">אישור</button>
-            <button onclick="closeExport()">ביטול</button>
-        </div>
-        <div id="content-export" style="display: none;">
-            <textarea id="export-content" style="width: 500px; height: 300px; direction: ltr;"></textarea>
-            <br>
-            <button onclick="closeExport()">סגור</button>
-        </div>
-    </div>
-
-    <div class="edit-buttons">
-        <button class="edit-button export-btn" onclick="exportContent()">ייצא שינויים</button>
-        <button class="edit-button edit-mode-btn" onclick="toggleEditMode()">מצב עריכה</button>
-    </div>
-
-    <div class="side-nav">
-        <div class="nav-section">
-            <h3>תוכן עניינים</h3>
-            <ul>
-                <li><a href="#programs">תכניות</a>
-                    <ul>
-                        <li><a href="#edventure">Edventure</a></li>
-                        <li><a href="#sun">StartUpNow</a></li>
-                        <li><a href="#nfte">NFTE</a></li>
-                        <li><a href="#nextream">Nextream</a></li>
-                    </ul>
-                </li>
-                <li><a href="#events">אירועים</a>
-                    <ul>
-                        <li><a href="#first-year">שנה א'</a></li>
-                        <li><a href="#second-year">שנים ב'-ג'</a></li>
-                        <li><a href="#all-years">כלל השנים</a></li>
-                    </ul>
-                </li>
-                <li><a href="#systems">מערכות</a>
-                    <ul>
-                        <li><a href="#salesforce">Salesforce</a></li>
-                        <li><a href="#uninet">UNINET</a></li>
-                        <li><a href="#sharepoint">SharePoint</a></li>
-                    </ul>
-                </li>
-                <li><a href="#documents">טפסים ומסמכים חשובים</a>
-                    <ul>
-                        <li><a href="#student-charter">אמנת חניך</a></li>
-                        <li><a href="#health-declaration">הצהרת בריאות</a></li>
-                    </ul>
-                </li>
-                <li><a href="#budget">תקציב ותפעול</a>
-                    <ul>
-                        <li><a href="#shufersal-budget">תקציב שופרסל</a></li>
-                    </ul>
-                </li>
-                <li><a href="#mentoring">ליווי ומנטורינג</a>
-                    <ul>
-                        <li><a href="#business-mentor">מלווה עסקי</a></li>
-                        <li><a href="#business-fellow">עמית עסקי</a></li>
-                    </ul>
-                </li>
-                <li><a href="#training">הכשרות והדרכה</a>
-                    <ul>
-                        <li><a href="#managers-training">הכשרת מנהלים</a></li>
-                        <li><a href="#mithadedim">מתחדדים</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="progress-tracker">
-            <h3>מעקב למידה</h3>
-            <p class="progress-info">סמן ✓ ליד כל מושג שלמדת והבנת כדי לעקוב אחר התקדמותך</p>
-            <div class="progress-bar">
-                <div class="progress" style="width: 0%"></div>
-            </div>
-            <span class="progress-text">0% מהמושגים נלמדו</span>
         </div>
     </div>
 
     <script>
-        function exportContent() {
-            const exportPanel = document.getElementById('export-panel');
-            document.getElementById('password-check').style.display = 'block';
-            document.getElementById('content-export').style.display = 'none';
-            exportPanel.style.display = 'block';
-        }
-
-        function checkPassword() {
-            const password = document.getElementById('admin-password').value;
-            if (password === "230190") {  // בדיקה ישירה של הסיסמה
-                document.getElementById('password-check').style.display = 'none';
-                document.getElementById('content-export').style.display = 'block';
-                const container = document.querySelector('.container');
-                document.getElementById('export-content').value = container.innerHTML;
-                document.getElementById('admin-password').value = '';
-            } else {
-                alert('סיסמה שגויה');
-            }
-        }
-
-        function closeExport() {
-            const exportPanel = document.getElementById('export-panel');
-            exportPanel.style.display = 'none';
-            document.getElementById('admin-password').value = '';
-        }
-
-        function toggleEditMode() {
-            if (document.designMode === "on") {
-                document.designMode = "off";
-                document.querySelector('.edit-mode-btn').textContent = "מצב עריכה";
-                document.removeEventListener('mouseover', handleElementHover);
+        function searchContent() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (searchTerm.length < 2) {
+                searchResults.style.display = 'none';
                 return;
             }
 
-            const password = prompt("הכנס סיסמת מנהל:");
-            if (password === "230190") {
-                document.designMode = "on";
-                document.querySelector('.edit-mode-btn').textContent = "סיום עריכה";
-                document.addEventListener('mouseover', handleElementHover);
-            } else {
-                alert('סיסמה שגויה');
-            }
-        }
-
-        function handleElementHover(e) {
-            if (document.designMode === "on") {
-                const target = e.target;
-                target.style.cursor = 'pointer';
-                target.style.outline = '2px dashed #007bff';
-                
-                target.addEventListener('mouseout', function() {
-                    target.style.outline = 'none';
-                }, { once: true });
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.dictionary-item');
-            let completedSections = JSON.parse(localStorage.getItem('completedSections')) || {};
+            const items = document.querySelectorAll('.dictionary-item');
+            const results = [];
             
-            // הוספת צ'קבוקס לכל סעיף
-            sections.forEach((section, index) => {
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.className = 'section-checkbox';
-                checkbox.checked = completedSections[index] || false;
+            items.forEach(item => {
+                const term = item.querySelector('.term').textContent.toLowerCase();
+                const definition = item.querySelector('.definition').textContent.toLowerCase();
                 
-                checkbox.addEventListener('change', function() {
-                    completedSections[index] = this.checked;
-                    localStorage.setItem('completedSections', JSON.stringify(completedSections));
-                    updateProgress();
-                });
-                
-                section.insertBefore(checkbox, section.firstChild);
-            });
-            
-            function updateProgress() {
-                const total = sections.length;
-                const completed = Object.values(completedSections).filter(v => v).length;
-                const percentage = (completed / total) * 100;
-                
-                document.querySelector('.progress').style.width = `${percentage}%`;
-                document.querySelector('.progress-text').textContent = `${Math.round(percentage)}% הושלם`;
-            }
-            
-            // עדכון ראשוני של ההתקדמות
-            updateProgress();
-            
-            // מעקב אחרי הסעיף הנוכחי בתפריט
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const id = entry.target.getAttribute('id');
-                    const menuItem = document.querySelector(`.nav-section a[href="#${id}"]`);
-                    
-                    if (entry.isIntersecting) {
-                        menuItem?.classList.add('active');
-                    } else {
-                        menuItem?.classList.remove('active');
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            sections.forEach(section => observer.observe(section));
-        });
-
-        document.querySelectorAll('.nav-section a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                if (term.includes(searchTerm) || definition.includes(searchTerm)) {
+                    results.push({
+                        term: item.querySelector('.term').textContent,
+                        id: item.id
                     });
                 }
             });
+
+            displaySearchResults(results);
+        }
+
+        function displaySearchResults(results) {
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            results.forEach(result => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'search-result-item';
+                resultItem.textContent = result.term;
+                resultItem.onclick = () => {
+                    scrollToElement(result.id);
+                    searchResults.style.display = 'none';
+                    document.getElementById('searchInput').value = '';
+                };
+                searchResults.appendChild(resultItem);
+            });
+
+            searchResults.style.display = 'block';
+        }
+
+        function scrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // מאזין לאירוע חיפוש
+        document.getElementById('searchInput').addEventListener('input', searchContent);
+
+        // סגירת תוצאות חיפוש בלחיצה מחוץ לאזור החיפוש
+        document.addEventListener('click', function(event) {
+            const searchResults = document.getElementById('searchResults');
+            const searchContainer = document.querySelector('.search-container');
+            
+            if (!searchContainer.contains(event.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // הצגת קטגוריית התפעול כברירת מחדל כשנפתח אזור השאלות ותשובות
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('operations').classList.add('active');
         });
     </script>
 </body>
-</html> 
+</html>
